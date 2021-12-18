@@ -41,7 +41,7 @@ resource "aws_security_group" "mysg" {
 }
 
 resource "aws_instance" "myserver1" {
-  count                        = "2"
+  count                        = "1"
   ami                          = "ami-002068ed284fb165b"
   instance_type                = "t2.micro"
   subnet_id                    = aws_subnet.mysubnet.id
