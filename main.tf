@@ -1,14 +1,14 @@
  resource "aws_vpc" "myvpc" {
-  cidr_block         = "10.0.0.0/16"
+  cidr_block         = var.cidr1
 }
  
 
 resource "aws_subnet" "mysubnet" {
   vpc_id              = aws_vpc.myvpc.id
-  cidr_block          = "10.0.1.0/24"
+  cidr_block          = var.cidr2
 
   tags = {
-    Name = "mysubnet"
+    Name = var.tags1 
   }
 }
 
@@ -18,36 +18,39 @@ resource "aws_internet_gateway" "mygw" {
   vpc_id = aws_vpc.myvpc.id
 
   tags = {
-    Name = "myigw"
+    Name = var.tags2  
   }
 }
 resource "aws_security_group" "mysg" {
   vpc_id                 = aws_vpc.myvpc.id
-  name                   = "mysg"
+  name                   =  var.name 
 
   ingress {
-    from_port            = 22
-    protocol             = "tcp"
-    to_port              = 22
-    cidr_blocks          = ["0.0.0.0/0"]
+    from_port            = var.from_port1
+    protocol             = var.protocol 
+    to_port              = var.to_port1 
+    cidr_blocks          = var.blocks 
   }
 
   ingress {
-    from_port            = 80
-    protocol             = "tcp"
-    to_port              = 80
-    cidr_blocks          = ["0.0.0.0/0"]
+    from_port            = var.from_port2
+    protocol             = var.protocol 
+    to_port              = var.to_port2 
+    cidr_blocks          = var.blocks 
+  }
+  tags = {
+    name = var.tags3 
   }
 }
 
 resource "aws_instance" "myserver1" {
-  count                        = "1"
-  ami                          = "ami-002068ed284fb165b"
-  instance_type                = "t2.micro"
+  count                        = var.count 
+  ami                          = var.ami
+  instance_type                = var.type
   subnet_id                    = aws_subnet.mysubnet.id
   vpc_security_group_ids       = [aws_security_group.mysg.id]
 
   tags = {
-    name = "testserver"
+    name = var.tags4 
   }
 }
