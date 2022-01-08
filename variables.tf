@@ -46,11 +46,11 @@ variable "to_port2" {
 variable "blocks" {
     type = string
 }
-
+/*
 variable "count" {
     type = string
 }
-
+*/
 variable "ami" {
     type = string
 }
