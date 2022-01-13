@@ -27,6 +27,7 @@ resource "aws_internet_gateway" "mygw" {
 resource "aws_security_group" "mysg" {
   vpc_id                 = aws_vpc.myvpc.id
   name                   = var.name 
+}
 
   ingress {
     from_port            = var.from_port1
@@ -55,5 +56,6 @@ resource "aws_instance" "myserver1" {
 
   tags = {
     name = var.tags4
+
   }
 }

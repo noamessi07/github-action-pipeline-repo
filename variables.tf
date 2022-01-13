@@ -33,6 +33,7 @@ variable "name" {
 
 variable "from_port1" {
     type = string   
+
 }
 
 variable "from_port2" {
@@ -59,6 +60,7 @@ variable "blocks" {
 variable "count" {
     type = string
 }
+
 
 variable "ami" {
     type = string
