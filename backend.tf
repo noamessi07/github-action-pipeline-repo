@@ -1,9 +1,9 @@
 terraform {
   cloud {
-    organization = "mizaorg"
+    organization = "GitAction"
 
     workspaces {
-      name = "demo-miza-workspace"
+      name = "github-action-pipeline"
     }
   }
 }
